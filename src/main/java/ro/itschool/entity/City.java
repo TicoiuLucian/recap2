@@ -1,10 +1,7 @@
 package ro.itschool.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class City {
 
   @Id
@@ -26,6 +24,7 @@ public class City {
 
   @ManyToOne
   @JoinColumn(name = "country_id", nullable = false)
+  @ToString.Exclude
   private Country country;
 
   @Column(name = "country_code", nullable = false)
