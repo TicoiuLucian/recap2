@@ -2,7 +2,7 @@ package ro.itschool.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +24,9 @@ public class CountryController {
     return new ResponseEntity<>(countryService.findByName(countryName, includeCities), HttpStatus.OK);
   }
 
+  //http://localhost:8080/country/all?page=1&size=5&sort=name,desc
   @GetMapping("/all")
-  public ResponseEntity<Page<Country>> getAllCountries(
-          @RequestParam Integer page,
-          @RequestParam Integer size,
-          @RequestParam String property,
-          @RequestParam Sort.Direction direction) {
-    return new ResponseEntity<>(countryService.findAll(page, size, property, direction), HttpStatus.OK);
+  public ResponseEntity<Page<Country>> getAllCountries(Pageable pageable) {
+    return new ResponseEntity<>(countryService.findAll(pageable), HttpStatus.OK);
   }
 }

@@ -27,11 +27,7 @@ public class CountryService {
             .orElseThrow(() -> new CountryNotFoundException("Country " + countryName + " not found"));
   }
 
-  public Page<Country> findAll(final int page, final int size, final String property, final Sort.Direction direction) {
-    Sort sort = direction == Sort.Direction.ASC ?
-            Sort.by(property).ascending() : Sort.by(property).descending();
-
-    Pageable pageable = PageRequest.of(page, size, sort);
-    return countryRepository.findAll(pageable);
+  public Page<Country> findAll(final Pageable pageable) {
+    return countryRepository.findAllWithoutCities(pageable);
   }
 }
