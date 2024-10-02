@@ -1,7 +1,10 @@
 package ro.itschool.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,7 +17,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "countries")
-@ToString
 public class Country {
 
   @Id
@@ -54,8 +56,27 @@ public class Country {
   @Column(name = "updated_at", nullable = false)
   private LocalDateTime updatedAt;
 
-  @OneToMany(mappedBy = "country", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "country")
   private List<City> cities = new ArrayList<>();
 
+  public Country(
+          final Long id, final String name, final String phonecode, final String capital, final String currency,
+          final String currencyName,
+          final String currencySymbol, final String nationality, final BigDecimal latitude, final BigDecimal longitude,
+          final LocalDateTime createdAt,
+          final LocalDateTime updatedAt) {
+    this.id = id;
+    this.name = name;
+    this.phonecode = phonecode;
+    this.capital = capital;
+    this.currency = currency;
+    this.currencyName = currencyName;
+    this.currencySymbol = currencySymbol;
+    this.nationality = nationality;
+    this.latitude = latitude;
+    this.longitude = longitude;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
+  }
 }
 

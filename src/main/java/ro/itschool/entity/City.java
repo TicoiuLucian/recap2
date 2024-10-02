@@ -1,5 +1,6 @@
 package ro.itschool.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +13,6 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class City {
 
   @Id
@@ -24,7 +24,7 @@ public class City {
 
   @ManyToOne
   @JoinColumn(name = "country_id", nullable = false)
-  @ToString.Exclude
+  @JsonBackReference
   private Country country;
 
   @Column(name = "country_code", nullable = false)
