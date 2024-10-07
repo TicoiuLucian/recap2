@@ -42,5 +42,14 @@ public class City {
   @Column(name = "updated_at", nullable = false)
   private LocalDateTime updatedAt;
 
+  public City(Long id, String name, String countryCode, BigDecimal latitude, BigDecimal longitude, LocalDateTime updatedAt, LocalDateTime createdAt) {
+    this.id = id;
+    this.name = name;
+    this.countryCode = countryCode;
+    this.latitude = latitude;
+    this.longitude = longitude;
+    this.updatedAt = updatedAt;
+    this.createdAt = createdAt;
+  }
 }
 
