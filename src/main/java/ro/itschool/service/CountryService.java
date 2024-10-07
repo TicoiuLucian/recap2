@@ -30,4 +30,6 @@ public class CountryService {
   public Page<Country> findAll(final Pageable pageable) {
     return countryRepository.findAllWithoutCities(pageable);
   }
+
+  public Page<Country> findByCurrency
 }
