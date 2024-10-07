@@ -33,5 +33,10 @@ public class CountryService {
 
   public Page<Country> findByCurrency(final Pageable pageable, String currency){
     return countryRepository.findByCurrency(currency,pageable);
+
+  }
+  public Page<Country> findUpdatedin2024(Pageable pageable){
+    return countryRepository.findUpdatedIn2024(pageable);
+
   }
 }

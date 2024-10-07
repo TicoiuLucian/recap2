@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import ro.itschool.entity.Country;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,4 +61,20 @@ public interface CountryRepository extends JpaRepository<Country, Integer> {
             c.updatedAt
             ) FROM Country c WHERE currency= :currency""")
     Page<Country> findByCurrency(final String currency, final Pageable pageable);
+
+    @Query(value = """ 
+            SELECT NEW Country(c.id,
+            c.name,
+            c.phonecode,
+            c.capital,
+            c.currency,
+            c.currencyName,
+            c.currencySymbol,
+            c.nationality,
+            c.latitude,
+            c.longitude,
+            c.createdAt,
+            c.updatedAt
+            ) FROM Country c WHERE year(updatedAt)=2024""")
+    Page<Country> findUpdatedIn2024(Pageable pageable);
 }
