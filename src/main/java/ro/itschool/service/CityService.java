@@ -12,14 +12,20 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CityService {
+  private final CityRepository cityRepository;
 
-    private final CityRepository cityRepository;
+  public City findByName(final String cityName) throws CityNotFoundException {
+    return cityRepository.findByName(cityName)
+            .orElseThrow(() -> new CityNotFoundException("City " + cityName + " not found"));
+  }
 
-    public City findByName(final String cityName) throws CityNotFoundException {
-        return cityRepository.findByName(cityName)
-                .orElseThrow(() -> new CityNotFoundException("City " + cityName + " not found"));
-    }
+  public Page<City> findAll(final Pageable pageable) {
+    return cityRepository.findAll(pageable);
+  }
 
+  public Page<City> findByCountryName(final String countryname, final Pageable pageable) {
+    return cityRepository.findByCountryName(countryname, pageable);
+  }
     public List<City> findCitiesByCountryName(final String countryName) throws CityNotFoundException {
         List<City> cities = cityRepository.findCitiesByCountryName(countryName);
         if (cities.isEmpty()) {
@@ -28,7 +34,7 @@ public class CityService {
         return cities;
     }
 
-    public Page<City> findAll(final Pageable pageable) {
-        return cityRepository.findAll(pageable);
-    }
 }
+
+
+

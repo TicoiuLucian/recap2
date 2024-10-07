@@ -1,7 +1,8 @@
 package ro.itschool.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import ro.itschool.entity.City;
 
 import java.util.List;
@@ -11,9 +12,7 @@ public interface CityRepository extends JpaRepository<City, Long> {
 
     Optional<City> findByName(String cityName);
 
-
-    @Query("SELECT c FROM City c WHERE c.country.name = :countryName")
-    List<City> findCitiesByCountryName(String countryName);
+    Page<City> findByCountryName(String countryName, Pageable pageable);
 
 
     List<City> findByCountryCode(String countryCode);
