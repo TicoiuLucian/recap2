@@ -30,7 +30,8 @@ public class CountryController {
         return new ResponseEntity<>(countryService.findAll(pageable), HttpStatus.OK);
     }
 
+    @GetMapping("/currency/{currency}")
     public ResponseEntity<Page<Country>> findByCurrency(Pageable pageable, @PathVariable String currency) {
-        return new ResponseEntity<>(countryService.find)
+        return new ResponseEntity<>(countryService.findByCurrency(pageable, currency), HttpStatus.OK);
     }
 }
