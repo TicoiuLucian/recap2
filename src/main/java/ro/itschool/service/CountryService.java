@@ -31,7 +31,7 @@ public class CountryService {
     return countryRepository.findAllWithoutCities(pageable);
   }
 
-  public Page<Country> findByCurrency( final Pageable pageable, final  String currency){
-    return countryRepository.findByCurrency(currency, pageable);
+  public Page<Country> findByCurrency(final Pageable pageable, String currency){
+    return countryRepository.findByCurrency(currency,pageable);
   }
 }
