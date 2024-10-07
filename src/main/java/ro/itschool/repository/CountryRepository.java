@@ -45,5 +45,5 @@ public interface CountryRepository extends JpaRepository<Country, Integer> {
             ) FROM Country c""")
     Page<Country> findAllWithoutCities(final Pageable pageable);
 
-    Page<Country> findByCurrency(final Pageable pageable);
+    Page<Country> findByCurrency(final String currency, final Pageable pageable);
 }
