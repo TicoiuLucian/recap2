@@ -10,6 +10,8 @@ import ro.itschool.entity.Country;
 import ro.itschool.exception.CountryNotFoundException;
 import ro.itschool.service.CountryService;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/country")
@@ -32,7 +34,10 @@ public class CountryController {
 
     @GetMapping("/currency/{currency}")
     public ResponseEntity<Page<Country>> findByCurrency(Pageable pageable, @PathVariable String currency) {
-        return new ResponseEntity<>(countryService.findByCurrency(pageable, currency), HttpStatus.OK );
+      Page<Country> countries = countryService.findByCurrency(pageable, currency);
+      if(countries.hasContent())
+        return new ResponseEntity<>(countries, HttpStatus.OK );
+      else return ResponseEntity.notFound().build();
     }
     @GetMapping("/2024")
     public ResponseEntity<Page<Country>> findUpdatedIn2024(Pageable pageable){
