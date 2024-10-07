@@ -45,5 +45,19 @@ public interface CountryRepository extends JpaRepository<Country, Integer> {
             ) FROM Country c""")
     Page<Country> findAllWithoutCities(final Pageable pageable);
 
+    @Query(value = """ 
+            SELECT NEW Country(c.id,
+            c.name,
+            c.phonecode,
+            c.capital,
+            c.currency,
+            c.currencyName,
+            c.currencySymbol,
+            c.nationality,
+            c.latitude,
+            c.longitude,
+            c.createdAt,
+            c.updatedAt
+            ) FROM Country c WHERE currency= :currency""")
     Page<Country> findByCurrency(final String currency, final Pageable pageable);
 }

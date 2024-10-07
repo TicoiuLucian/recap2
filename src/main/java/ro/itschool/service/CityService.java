@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ro.itschool.entity.City;
+import ro.itschool.entity.Country;
 import ro.itschool.exception.CityNotFoundException;
 import ro.itschool.repository.CityRepository;
 
@@ -33,6 +34,8 @@ public class CityService {
         }
         return cities;
     }
+
+
 
 }
 
