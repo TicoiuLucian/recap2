@@ -43,12 +43,6 @@ public class CityController {
         return new ResponseEntity<>(cityService.findAll(pageable), HttpStatus.OK);
     }
 
-    @GetMapping("/name/{cityName}")
-    public ResponseEntity<City> getCityByName(
-            @PathVariable String cityName) throws CityNotFoundException {
-        return new ResponseEntity<>(cityService.findByName(cityName), HttpStatus.OK);
-    }
-
     @PostMapping
     public City saveCity(@RequestBody City city) {
         return cityService.update(city);
