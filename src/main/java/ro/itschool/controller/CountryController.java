@@ -34,4 +34,8 @@ public class CountryController {
     public ResponseEntity<Page<Country>> findByCurrency(Pageable pageable, @PathVariable String currency) {
         return new ResponseEntity<>(countryService.findByCurrency(pageable, currency), HttpStatus.OK );
     }
+    @GetMapping("/2024")
+    public ResponseEntity<Page<Country>> findUpdatedIn2024(Pageable pageable){
+        return new ResponseEntity<>(countryService.findUpdatedin2024(pageable), HttpStatus.OK);
+    }
 }
