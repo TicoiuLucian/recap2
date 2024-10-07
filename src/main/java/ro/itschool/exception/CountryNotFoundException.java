@@ -6,3 +6,4 @@ public class CountryNotFoundException extends Exception {
     super(message);
   }
 }
+
